@@ -52,7 +52,14 @@ audio {
 }
 
 img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
+    height: 200px;
+    width:  200px;
+
+}
+
+footer {
+    margin: 0;
+    font-family: Arial;
+    background: #f2edd5b8;
+    color: white;
 }

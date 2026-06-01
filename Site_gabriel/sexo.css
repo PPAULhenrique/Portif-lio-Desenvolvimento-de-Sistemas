@@ -63,3 +63,27 @@ footer {
     background: #f2edd5b8;
     color: white;
 }
+
+.card-passaro {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.card-passaro img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.card-passaro h3 {
+    margin: 0;
+    color: #F26716;
+}
+
+@media (max-width: 600px) {
+    .card-passaro {
+        flex-direction: column;
+        text-align: center;
+    }
+}

@@ -1,89 +1,161 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    font-family: Arial;
-    background: #f2edd5b8;
-    color: white;
+    font-family: Arial, sans-serif;
+    background: #eef5f0;
+    color: #18332f;
 }
 
 header {
-    background: #E7390D;
-    padding: 20px;
-    text-align: center;
+    padding: 24px 20px 70px;
+    color: #fff9ed;
+    background:
+        linear-gradient(135deg, rgba(13, 54, 58, 0.96), rgba(25, 91, 79, 0.78)),
+        url("foto de passaros/Bem_Te_Vi.jpg") center/cover;
 }
 
-section {
-    margin: 20px;
-    padding: 20px;
-    background: #04261E;
-    border-radius: 10px;
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    max-width: 980px;
+    margin: 0 auto 54px;
 }
 
-button {
-    padding: 10px 20px;
-    border: none;
-    background: #F26716;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
+nav strong {
+    color: #ffcf5c;
+    font-size: 20px;
 }
 
-button:hover {
-    background: #873606;
+nav a,
+footer a {
+    color: #fff9ed;
+    text-decoration: none;
+    border-bottom: 2px solid #7be0c4;
+    padding-bottom: 4px;
+}
+
+.topo {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.etiqueta {
+    color: #7be0c4;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h1 {
+    max-width: 650px;
+    margin: 10px 0 0;
+    font-size: 46px;
+    line-height: 1.05;
 }
 
 main {
-    max-width: 800px;
-    margin: auto;
+    display: grid;
+    gap: 22px;
+    max-width: 980px;
+    margin: -38px auto 0;
+    padding: 0 20px 36px;
 }
 
-button {
-    transition: 0.3s;
+section {
+    padding: 22px;
+    background: #ffffff;
+    border: 1px solid #cfe2d6;
+    border-radius: 8px;
+    box-shadow: 0 14px 32px rgba(24, 51, 47, 0.1);
 }
 
-@media (max-width: 600px) {
-    body {
-        font-size: 14px;
-    }
+.intro {
+    border-left: 8px solid #ffcf5c;
 }
 
-audio {
-    width: 100%;
-    margin-top: 10px;
-}
-
-img {
-    height: 200px;
-    width:  200px;
-
-}
-
-footer {
-    margin: 0;
-    font-family: Arial;
-    background: #f2edd5b8;
-    color: white;
+.intro h2 {
+    margin-top: 0;
 }
 
 .card-passaro {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 22px;
 }
 
 .card-passaro img {
-    width: 200px;
-    height: 200px;
-    border-radius: 10px;
+    width: 210px;
+    height: 210px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 5px solid #ffcf5c;
 }
 
 .card-passaro h3 {
     margin: 0;
-    color: #F26716;
+    color: #0d6b63;
 }
 
-@media (max-width: 600px) {
+button {
+    padding: 11px 18px;
+    border: none;
+    background: #ff7a45;
+    color: #122c2f;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.25s;
+}
+
+button:hover {
+    background: #ffcf5c;
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    background: #cad7d0;
+    color: #60706a;
+    cursor: not-allowed;
+}
+
+button:disabled:hover {
+    background: #cad7d0;
+    transform: none;
+}
+
+audio {
+    width: 100%;
+    margin-top: 12px;
+}
+
+footer {
+    padding: 24px 20px;
+    text-align: center;
+    background: #0d363a;
+}
+
+@media (max-width: 700px) {
+    nav {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 34px;
+    }
+
     .card-passaro {
         flex-direction: column;
-        text-align: center;
+        align-items: flex-start;
+    }
+
+    .card-passaro img {
+        width: 100%;
+        height: 240px;
     }
 }

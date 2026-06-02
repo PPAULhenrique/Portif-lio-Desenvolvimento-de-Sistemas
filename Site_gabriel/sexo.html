@@ -2,141 +2,111 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Meu Site Fodão de prikito</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogo gripe aviario sonoro</title>
     <link rel="stylesheet" href="sexo.css">
 </head>
 <body>
-
     <header>
-                <h1>Passáros legais fodões</h1>
-                <p>Calopisitola-games</p>
+        <nav>
+            <strong>Aviario Sonoro</strong>
+            <a href="homem.html">Inicio</a>
+        </nav>
+        <div class="topo">
+            <p class="etiqueta">catalogo de cantos</p>
+            <h1>Passaros legais para ouvir e conhecer.</h1>
+        </div>
     </header>
 
+    <main>
+        <section class="intro">
+            <h2>Um site de passaros para passaros</h2>
+            <p>Esse site junta fotos, cantos e pequenas descricoes em um catalogo com cara propria.</p>
+        </section>
 
-<main>
-    <section>
-                <h2>Um site de passáros para passáros</h2>
-                <h6> Esse site foi feito por passáros sencientes para passáros sencientes.</h6>
-
-    </section>
-
-    <section>
-                <h2>Calopsita (com mutação Pérola)</h2>    
-
+        <section>
+            <h2>Calopsita com mutacao Perola</h2>
             <div class="card-passaro">
-                <img src="foto de passaros/prikito.jpg">
-
-            <div>
-                <h3>Uma ave muito estilosa </h3>
-                <p>calopsitolas (Nymphicus hollandicus)</p>
-                <button onclick="tocarAudio('audio1')">Canto da Calopsita</button>
+                <img src="foto de passaros/prikito.jpg" alt="Calopsita">
+                <div>
+                    <h3>Uma ave muito estilosa</h3>
+                    <p>Calopsitolas (Nymphicus hollandicus)</p>
+                    <button onclick="tocarAudio('audio1')">Canto da Calopsita</button>
+                </div>
             </div>
-        </div>
-        <audio id="audio1">
-        <source src="Audio de passaros/Calopsitas Cantando.mp3" type="audio/mpeg">
+            <audio id="audio1">
+                <source src="Audio de passaros/Calopsitas Cantando.mp3" type="audio/mpeg">
             </audio>
-    </section> 
-    <section>
-                <h2> Papagaio Bico-sujo</h2>    
+        </section>
 
+        <section>
+            <h2>Papagaio Bico-sujo</h2>
             <div class="card-passaro">
-                <img src="foto de passaros/bicos-de-passaros.jpg">
-
-
-            <div>
-                <h3>Ave farmando aura de fodona </h3>    
-                <p>Papagaio Bico-Sujo (Fiullius Doasphutas)</p>
-                <button onclick="tocarAudio('audio2')">Canto do Papagaio Bico-Sujo</button>
+                <img src="foto de passaros/bicos-de-passaros.jpg" alt="Papagaio Bico-sujo">
+                <div>
+                    <h3>Ave farmando aura de fodona</h3>
+                    <p>Papagaio Bico-Sujo (Fiullius Doasphutas)</p>
+                    <button onclick="tocarAudio('audio2')">Canto do Papagaio Bico-Sujo</button>
+                </div>
+            </div>
             <audio id="audio2">
-            <source src="Audio de passaros/Papagaio bico-sujo xingando.mp3" type="audio/mpeg">
+                <source src="Audio de passaros/Papagaio bico-sujo xingando.mp3" type="audio/mpeg">
             </audio>
-            </div>
-        </div>        
-        
+        </section>
 
-    </section>
-
-<section>
-                <h2> Cacatua</h2>    
-
+        <section>
+            <h2>Cacatua</h2>
             <div class="card-passaro">
-                <img src="foto de passaros/cacatua.jpg">
-
-
-            <div>
-                <h3>Ave farmando aura de fodona </h3>    
-                <p>Cacatua (Cacatua galerita)</p>
-                <button onclick="tocarAudio('audio3')">Canto da Cacatua</button>
-            <audio id="audio3">
-            <source src="Audio de passaros/Cacatua cantando.mp3" type="audio/mpeg">
-            </audio>
+                <img src="foto de passaros/cacatua.jpg" alt="Cacatua">
+                <div>
+                    <h3>Ave farmando aura de fodona</h3>
+                    <p>Cacatua (Cacatua galerita)</p>
+                    <button disabled>Audio indisponivel</button>
+                </div>
             </div>
-        </div>        
-        
+        </section>
 
-    </section>
-
-<section>
-                <h2> Maritaca</h2>    
-
+        <section>
+            <h2>Maritaca</h2>
             <div class="card-passaro">
-                <img src="foto de passaros/maritaca.jpg">
-
-            <div>
-                <h3>Ave com nome estranho e legal </h3>    
-                <p>Maritaca (Phaethon aethereus)</p>
-                <button onclick="tocarAudio('audio4')">Canto da Maritaca</button>
-            <audio id="audio4">
-            <source src="Audio de passaros/Maritaca cantando.mp3" type="audio/mpeg">
-            </audio>
+                <img src="foto de passaros/maritaca.jpg" alt="Maritaca">
+                <div>
+                    <h3>Ave com nome estranho e legal</h3>
+                    <p>Maritaca (Phaethon aethereus)</p>
+                    <button disabled>Audio indisponivel</button>
+                </div>
             </div>
-        </div>        
-        
+        </section>
 
-    </section>
-
-<section>
-                <h2> Tucano-toco</h2>    
-
+        <section>
+            <h2>Tucano-toco</h2>
             <div class="card-passaro">
-                <img src="foto de passaros/tucano_toco.jpg">
-
-
-            <div>
-                <h3>Ave farmando aura de fodona </h3>    
-                <p>Tucano-Toco (Ramphastos tucanus)</p>
-                <button onclick="tocarAudio('audio5')">Canto do Tucano-Toco</button>
-            <audio id="audio5">
-            <source src="Audio de passaros/Tucano-toco cantando.mp3" type="audio/mpeg">
-            </audio>
+                <img src="foto de passaros/tucano_toco.jpg" alt="Tucano-toco">
+                <div>
+                    <h3>Ave farmando aura de fodona</h3>
+                    <p>Tucano-Toco (Ramphastos tucanus)</p>
+                    <button disabled>Audio indisponivel</button>
+                </div>
             </div>
-        </div>        
-        
+        </section>
 
-    </section>
-
-<section>
-                <h2> bem-te-vi</h2>    
-
+        <section>
+            <h2>Bem-te-vi</h2>
             <div class="card-passaro">
-                <img src="foto de passaros/Bem_Te_Vi.jpg">
-
-
-            <div>
-                <h3>fiu fi fiu fi fiu </h3>    
-                <p>Bem-te-vi (Pipraeidea bonariensis)</p>
-                <button onclick="tocarAudio('audio6')">Canto do Bem-te-vi</button>
-            <audio id="audio6">
-            <source src="Audio de passaros/Bem-te-vi cantando.mp3" type="audio/mpeg">
-            </audio>
+                <img src="foto de passaros/Bem_Te_Vi.jpg" alt="Bem-te-vi">
+                <div>
+                    <h3>Fiu fi fiu fi fiu</h3>
+                    <p>Bem-te-vi (Pipraeidea bonariensis)</p>
+                    <button disabled>Audio indisponivel</button>
+                </div>
             </div>
-        </div>        
-        
+        </section>
+    </main>
 
-    </section>
+    <footer>
+        <a href="homem.html">Voltar para a entrada do Aviario</a>
+    </footer>
 
-</main>
-    <script src="sexo.js"> </script>
+    <script src="sexo.js"></script>
 </body>
-
 </html>

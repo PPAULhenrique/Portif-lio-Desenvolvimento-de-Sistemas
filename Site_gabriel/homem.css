@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f6f1e4;
+    color: #19302b;
+}
+
+.hero {
+    min-height: 82vh;
+    padding: 24px;
+    color: #fff9ed;
+    background:
+        linear-gradient(90deg, rgba(10, 43, 48, 0.88), rgba(10, 43, 48, 0.32)),
+        url("foto de passaros/tucano_toco.jpg") center/cover;
+    
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+nav strong {
+    color: #ffcf5c;
+    font-size: 20px;
+}
+
+nav a {
+    color: #fff9ed;
+    text-decoration: none;
+    border-bottom: 2px solid #65d6ad;
+    padding-bottom: 4px;
+}
+
+.hero-conteudo {
+    max-width: 980px;
+    margin: 110px auto 0;
+}
+
+.etiqueta {
+    color: #65d6ad;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h1 {
+    max-width: 680px;
+    margin: 12px 0;
+    font-size: 58px;
+    line-height: 1;
+}
+
+.hero-conteudo p {
+    max-width: 520px;
+    font-size: 18px;
+}
+
+main {
+    max-width: 980px;
+    margin: auto;
+    padding: 32px 20px;
+}
+
+section {
+    padding: 28px;
+    background: #ffffff;
+    border-left: 8px solid #ff7a45;
+    border-radius: 8px;
+    box-shadow: 0 16px 40px rgba(25, 48, 43, 0.12);
+}
+
+.card-inicio h2 {
+    margin-top: 0;
+    color: #0a4d4f;
+}
+
+button,
+.botao-link {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 12px 22px;
+    border: none;
+    background: #ff7a45;
+    color: #102c2f;
+    cursor: pointer;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.25s;
+}
+
+button:hover,
+.botao-link:hover {
+    background: #ffcf5c;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 700px) {
+    .hero {
+        min-height: 72vh;
+        padding: 18px;
+    }
+
+    nav {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .hero-conteudo {
+        margin-top: 70px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+}

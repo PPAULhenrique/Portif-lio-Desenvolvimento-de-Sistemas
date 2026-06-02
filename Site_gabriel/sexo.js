@@ -1,13 +1,16 @@
-function tocarAudio() {
-    const audio = document.getElementById("meuAudio");
-    audio.play();
-}
-
-function pausarAudio() {
-    const audio = document.getElementById("meuAudio");
-    audio.pause();
-}
-
 function tocarAudio(id) {
-    document.getElementById(id).play();
+    const audio = document.getElementById(id);
+
+    if (!audio) {
+        return;
+    }
+
+    document.querySelectorAll("audio").forEach(function(outroAudio) {
+        if (outroAudio !== audio) {
+            outroAudio.pause();
+            outroAudio.currentTime = 0;
+        }
+    });
+
+    audio.play();
 }

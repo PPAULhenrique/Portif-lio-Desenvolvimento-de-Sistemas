@@ -1,7 +1,7 @@
 const frases = [
     "Hoje o catalogo esta pronto para cantar.",
-    "Escolha uma ave e deixe o site fazer barulho.",
-    "As penas sao coloridas, mas a personalidade e mais ainda."
+    "Escolha uma ave e deixe sua família para sempre.",
+    "As penas sao coloridas, mas o meu cu é mais ainda."
 ];
 
 const fraseDoDia = document.getElementById("frase-do-dia");

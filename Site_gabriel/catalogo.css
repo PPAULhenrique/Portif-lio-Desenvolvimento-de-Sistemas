@@ -101,6 +101,40 @@ section {
     color: #0d6b63;
 }
 
+body {
+
+  cursor: none; /* esconde o cursor padrão */
+}
+
+/* cursor custom */
+.cursor {
+  width: 40px;
+  height: 40px;
+  border-radius: 10%;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  pointer-events: none; /* não atrapalha cliques */
+
+  background: radial-gradient(circle, #ffffff, #4fc3f7);
+
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s linear;
+}
+
+.cursor {
+  width: 40px;
+  height: 40px;
+  background: url('Outras Fotos/Cursor_De_Passaro.png') no-repeat center;
+}
+
+* {
+  cursor: none !important;
+}
+
+
 button {
     padding: 11px 18px;
     border: none;
@@ -159,3 +193,4 @@ footer {
         height: 240px;
     }
 }
+

@@ -1,11 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Perfil | Aviario Sonoro</title>
+    <link rel="stylesheet" href="perfil.css">
 </head>
 <body>
-    
+    <header class="barra-site">
+        <nav>
+            <a class="marca" href="hub.html">Aviario Sonoro</a>
+            <div class="links-nav">
+                <a href="hub.html">Feed</a>
+                <a href="catalogo.html">Catalogo</a>
+                <a href="login.html">Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pagina-perfil">
+        <section class="capa-perfil">
+            <div class="avatar-grande" id="avatarPerfil">AS</div>
+            <div class="info-perfil">
+                <p class="etiqueta">perfil de usuario</p>
+                <h1 id="nomePerfil">Visitante do Aviario</h1>
+                <p id="bioPerfil">Apaixonado por passaros, cantos estranhos e fotos com muita aura.</p>
+                <div class="metricas">
+                    <span><strong>128</strong> seguidores</span>
+                    <span><strong>24</strong> posts</span>
+                    <span><strong>6</strong> aves favoritas</span>
+                </div>
+            </div>
+            <a class="botao-link" href="cadastro.html">Editar perfil</a>
+        </section>
+
+        <section class="grade-perfil">
+            <aside class="painel">
+                <h2>Sobre</h2>
+                <p><strong>Usuario:</strong> <span id="usuarioPerfil">@visitante</span></p>
+                <p><strong>Ave favorita:</strong> Tucano-toco</p>
+                <p><strong>Status:</strong> Online no ninho</p>
+            </aside>
+
+            <div class="coluna-posts">
+                <article class="post">
+                    <div class="topo-post">
+                        <div class="avatar">AS</div>
+                        <div>
+                            <strong id="autorPost">Visitante do Aviario</strong>
+                            <span>publicou agora</span>
+                        </div>
+                    </div>
+                    <p>Hoje entrei no catalogo e ouvi o canto do tucano. Muito respeito pelo bico com presenca.</p>
+                    <img src="foto de passaros/tucano_toco.jpg" alt="Tucano-toco">
+                    <div class="acoes-post">
+                        <button type="button">Curtir</button>
+                        <button type="button">Comentar</button>
+                        <button type="button">Compartilhar</button>
+                    </div>
+                </article>
+
+                <article class="post">
+                    <div class="topo-post">
+                        <div class="avatar">BT</div>
+                        <div>
+                            <strong>Bem-te-vi Oficial</strong>
+                            <span>cantou ha 12 min</span>
+                        </div>
+                    </div>
+                    <p>Fiu fi fiu fi fiu. Traducao: bom dia, rede social aviaria.</p>
+                    <img src="foto de passaros/Bem_Te_Vi.jpg" alt="Bem-te-vi">
+                    <div class="acoes-post">
+                        <button type="button">Curtir</button>
+                        <button type="button">Comentar</button>
+                        <button type="button">Compartilhar</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <div class="cursor"></div>
+    <script src="perfil.js"></script>
 </body>
 </html>

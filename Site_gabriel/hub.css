@@ -5,92 +5,122 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f6f1e4;
-    color: #19302b;
+    background: #eef5f0;
+    color: #18332f;
 }
 
-.hero {
-    min-height: 82vh;
-    padding: 24px;
+.topo-site {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 18px 20px;
+    background: #0d363a;
     color: #fff9ed;
-    background:
-        linear-gradient(90deg, rgba(10, 43, 48, 0.88), rgba(10, 43, 48, 0.32)),
-        url("foto de passaros/tucano_toco.jpg") center/cover;
-    
+    box-shadow: 0 8px 24px rgba(13, 54, 58, 0.18);
 }
 
 nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
-    max-width: 980px;
+    gap: 18px;
+    max-width: 1180px;
     margin: 0 auto;
 }
 
-nav strong {
+.marca {
     color: #ffcf5c;
     font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
 }
 
-nav a {
-    color: #fff9ed;
+.links-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.links-nav a,
+.link-secundario,
+.tendencias a {
+    color: #0d6b63;
     text-decoration: none;
-    border-bottom: 2px solid #65d6ad;
+    font-weight: bold;
+}
+
+.links-nav a {
+    color: #fff9ed;
+    border-bottom: 2px solid #7be0c4;
     padding-bottom: 4px;
 }
 
-.hero-conteudo {
-    max-width: 980px;
-    margin: 110px auto 0;
+.layout-social {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr) 240px;
+    gap: 22px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 28px 20px 44px;
 }
 
-.etiqueta {
-    color: #65d6ad;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-h1 {
-    max-width: 680px;
-    margin: 12px 0;
-    font-size: 58px;
-    line-height: 1;
-}
-
-.hero-conteudo p {
-    max-width: 520px;
-    font-size: 18px;
-}
-
-main {
-    max-width: 980px;
-    margin: auto;
-    padding: 32px 20px;
-}
-
-section {
-    padding: 28px;
+.painel,
+.post {
     background: #ffffff;
-    border-left: 8px solid #ff7a45;
+    border: 1px solid #cfe2d6;
     border-radius: 8px;
-    box-shadow: 0 16px 40px rgba(25, 48, 43, 0.12);
+    box-shadow: 0 14px 32px rgba(24, 51, 47, 0.1);
 }
 
-.card-inicio h2 {
-    margin-top: 0;
-    color: #0a4d4f;
+.painel {
+    padding: 20px;
 }
 
+.lateral,
+.tendencias {
+    position: sticky;
+    top: 86px;
+    align-self: start;
+}
+
+.mini-perfil,
+.topo-post {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mini-perfil {
+    margin-bottom: 18px;
+}
+
+.mini-perfil span,
+.topo-post span {
+    display: block;
+    color: #60706a;
+    font-size: 14px;
+}
+
+.avatar {
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: 46px;
+    height: 46px;
+    border-radius: 8px;
+    background: #ffcf5c;
+    color: #0d363a;
+    font-weight: bold;
+}
+
+.botao-link,
 button,
-.botao-link {
+.botao-menor {
     display: inline-block;
-    margin-top: 12px;
-    padding: 12px 22px;
+    padding: 11px 18px;
     border: none;
     background: #ff7a45;
-    color: #102c2f;
+    color: #122c2f;
     cursor: pointer;
     border-radius: 6px;
     text-decoration: none;
@@ -98,57 +128,122 @@ button,
     transition: 0.25s;
 }
 
+.botao-link {
+    width: 100%;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.botao-link:hover,
 button:hover,
-.botao-link:hover {
+.botao-menor:hover {
     background: #ffcf5c;
     transform: translateY(-2px);
 }
 
-@media (max-width: 700px) {
-    .hero {
-        min-height: 72vh;
-        padding: 18px;
+.feed {
+    display: grid;
+    gap: 18px;
+}
+
+.composer {
+    color: #fff9ed;
+    background:
+        linear-gradient(135deg, rgba(13, 54, 58, 0.96), rgba(255, 122, 69, 0.34)),
+        url("foto de passaros/tucano_toco.jpg") center/cover;
+}
+
+.etiqueta {
+    margin: 0 0 8px;
+    color: #7be0c4;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h1 {
+    margin: 0 0 10px;
+    font-size: 38px;
+    line-height: 1.06;
+}
+
+.campo-post {
+    margin-top: 18px;
+    padding: 14px;
+    border: 1px solid rgba(255, 249, 237, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 249, 237, 0.14);
+    color: #fff9ed;
+}
+
+.post {
+    padding: 20px;
+}
+
+.post p {
+    margin: 14px 0;
+}
+
+.post img {
+    width: 100%;
+    max-height: 390px;
+    object-fit: cover;
+    border: 5px solid #ffcf5c;
+    border-radius: 8px;
+}
+
+.acoes-post {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.tendencias h2 {
+    margin-top: 0;
+}
+
+.tendencias a {
+    display: block;
+    padding: 11px 0;
+    border-bottom: 1px solid #cfe2d6;
+}
+
+* {
+    cursor: none !important;
+}
+
+.cursor {
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background: url("Outras Fotos/Cursor_De_Passaro.png") no-repeat center;
+    transform: translate(-50%, -50%);
+    transition: transform 0.05s linear;
+    z-index: 20;
+}
+
+@media (max-width: 930px) {
+    .layout-social {
+        grid-template-columns: 1fr;
     }
 
+    .lateral,
+    .tendencias {
+        position: static;
+    }
+}
+
+@media (max-width: 640px) {
     nav {
         align-items: flex-start;
         flex-direction: column;
     }
 
-    .hero-conteudo {
-        margin-top: 70px;
-    }
-
     h1 {
-        font-size: 40px;
+        font-size: 32px;
     }
 }
-
-* {
-cursor: none !important
-}
-
-/* cursor custom */
-.cursor {
-  width: 40px;
-  height: 40px;
-  border-radius: 10%;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  pointer-events: none; /* não atrapalha cliques */
-
-  background: radial-gradient(circle, #ffffff, #4fc3f7);
-
-  transform: translate(-50%, -50%);
-  transition: transform 0.05s linear;
-}
-
-.cursor {
-  width: 40px;
-  height: 40px;
-  background: url('Outras Fotos/Cursor_De_Passaro.png') no-repeat center;
-}
-

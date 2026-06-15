@@ -1,10 +1,3 @@
-const frases = [
-    "Hoje o catalogo esta pronto para cantar.",
-    "Escolha uma ave e entre no feed do Aviario.",
-    "As penas sao coloridas, e o feed tambem."
-];
-
-const fraseDoDia = document.getElementById("frase-do-dia");
 const usuarioSalvo = JSON.parse(localStorage.getItem("aviarioUsuario") || "null");
 
 function iniciais(nome) {
@@ -17,15 +10,18 @@ function iniciais(nome) {
         .toUpperCase() || "AS";
 }
 
-if (fraseDoDia) {
-    const indice = new Date().getDay() % frases.length;
-    fraseDoDia.textContent = frases[indice];
-}
-
 if (usuarioSalvo) {
-    document.getElementById("nomeHub").textContent = usuarioSalvo.nome;
-    document.getElementById("usuarioHub").textContent = `@${usuarioSalvo.usuario}`;
-    document.getElementById("avatarHub").textContent = iniciais(usuarioSalvo.nome);
+    const nomePerfil = document.getElementById("nomePerfil");
+    const bioPerfil = document.getElementById("bioPerfil");
+    const usuarioPerfil = document.getElementById("usuarioPerfil");
+    const avatarPerfil = document.getElementById("avatarPerfil");
+    const autorPost = document.getElementById("autorPost");
+
+    nomePerfil.textContent = usuarioSalvo.nome;
+    bioPerfil.textContent = usuarioSalvo.bio || "Novo membro do Aviario Sonoro.";
+    usuarioPerfil.textContent = `@${usuarioSalvo.usuario}`;
+    avatarPerfil.textContent = iniciais(usuarioSalvo.nome);
+    autorPost.textContent = usuarioSalvo.nome;
 }
 
 const cursor = document.querySelector(".cursor");

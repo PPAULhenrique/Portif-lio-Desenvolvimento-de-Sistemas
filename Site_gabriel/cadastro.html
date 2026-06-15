@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Perfil | Aviario Sonoro</title>
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <main class="auth-pagina">
+        <section class="chamada">
+            <a class="marca" href="hub.html">Aviario Sonoro</a>
+            <p class="etiqueta">novo perfil</p>
+            <h1>Crie sua identidade dentro do Aviario.</h1>
+            <p>Monte seu perfil para aparecer no feed com nome, usuario e uma bio no clima do site.</p>
+        </section>
+
+        <section class="cartao-auth">
+            <h2>Criar perfil</h2>
+            <form id="formCadastro">
+                <label>
+                    Nome do perfil
+                    <input id="cadastroNome" type="text" placeholder="ex: Gabriel Passarologo" required>
+                </label>
+                <label>
+                    Usuario
+                    <input id="cadastroUsuario" type="text" placeholder="ex: gabriel_aviario" required>
+                </label>
+                <label>
+                    Bio
+                    <textarea id="cadastroBio" placeholder="Conte qual ave representa sua energia hoje"></textarea>
+                </label>
+                <label>
+                    Senha
+                    <input id="cadastroSenha" type="password" placeholder="Crie uma senha" required>
+                </label>
+                <button type="submit">Criar perfil</button>
+                <p class="mensagem" id="mensagemCadastro"></p>
+            </form>
+            <p class="rodape-form">Ja tem perfil? <a href="login.html">Entrar</a></p>
+            <p class="rodape-form"><a href="hub.html">Voltar para o feed</a></p>
+        </section>
+    </main>
+
+    <div class="cursor"></div>
+    <script src="auth.js"></script>
+</body>
+</html>

@@ -31,6 +31,12 @@ nav strong {
     font-size: 20px;
 }
 
+.links-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
 nav a,
 footer a {
     color: #fff9ed;

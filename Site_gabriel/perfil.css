@@ -1,0 +1,233 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eef5f0;
+    color: #18332f;
+}
+
+.barra-site {
+    padding: 18px 20px;
+    background: #0d363a;
+    color: #fff9ed;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.marca {
+    color: #ffcf5c;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.links-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.links-nav a {
+    color: #fff9ed;
+    text-decoration: none;
+    border-bottom: 2px solid #7be0c4;
+    padding-bottom: 4px;
+}
+
+.pagina-perfil {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 28px 20px 44px;
+}
+
+.capa-perfil {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: end;
+    gap: 22px;
+    min-height: 300px;
+    padding: 28px;
+    color: #fff9ed;
+    background:
+        linear-gradient(135deg, rgba(13, 54, 58, 0.96), rgba(255, 122, 69, 0.38)),
+        url("Outras Fotos/Frutiger aero wallpaper.jpg") center/cover;
+    border-radius: 8px;
+    box-shadow: 0 16px 40px rgba(24, 51, 47, 0.16);
+}
+
+.avatar-grande,
+.avatar {
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    border-radius: 8px;
+    background: #ffcf5c;
+    color: #0d363a;
+    font-weight: bold;
+}
+
+.avatar-grande {
+    width: 118px;
+    height: 118px;
+    border: 5px solid #fff9ed;
+    font-size: 36px;
+}
+
+.avatar {
+    width: 44px;
+    height: 44px;
+}
+
+.etiqueta {
+    margin: 0 0 8px;
+    color: #7be0c4;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h1 {
+    margin: 0 0 8px;
+    font-size: 42px;
+    line-height: 1.05;
+}
+
+.info-perfil p {
+    max-width: 620px;
+}
+
+.metricas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 16px;
+}
+
+.metricas span {
+    padding: 9px 12px;
+    background: rgba(255, 249, 237, 0.14);
+    border: 1px solid rgba(255, 249, 237, 0.24);
+    border-radius: 6px;
+}
+
+.botao-link,
+button {
+    display: inline-block;
+    padding: 11px 18px;
+    border: none;
+    background: #ff7a45;
+    color: #122c2f;
+    cursor: pointer;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.25s;
+}
+
+.botao-link:hover,
+button:hover {
+    background: #ffcf5c;
+    transform: translateY(-2px);
+}
+
+.grade-perfil {
+    display: grid;
+    grid-template-columns: 290px 1fr;
+    gap: 22px;
+    margin-top: 22px;
+}
+
+.painel,
+.post {
+    padding: 22px;
+    background: #ffffff;
+    border: 1px solid #cfe2d6;
+    border-radius: 8px;
+    box-shadow: 0 14px 32px rgba(24, 51, 47, 0.1);
+}
+
+.painel h2,
+.post p {
+    margin-top: 0;
+}
+
+.coluna-posts {
+    display: grid;
+    gap: 18px;
+}
+
+.topo-post {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.topo-post span {
+    display: block;
+    color: #60706a;
+    font-size: 14px;
+}
+
+.post img {
+    width: 100%;
+    max-height: 380px;
+    object-fit: cover;
+    border: 5px solid #ffcf5c;
+    border-radius: 8px;
+}
+
+.acoes-post {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+* {
+    cursor: none !important;
+}
+
+.cursor {
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background: url("Outras Fotos/Cursor_De_Passaro.png") no-repeat center;
+    transform: translate(-50%, -50%);
+    transition: transform 0.05s linear;
+    z-index: 20;
+}
+
+@media (max-width: 760px) {
+    nav,
+    .capa-perfil,
+    .grade-perfil {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .capa-perfil {
+        align-items: start;
+    }
+
+    h1 {
+        font-size: 34px;
+    }
+}

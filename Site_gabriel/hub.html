@@ -3,29 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gripe Aviaria</title>
+    <title>Aviario Sonoro</title>
     <link rel="stylesheet" href="hub.css">
 </head>
 <body>
-    <header class="hero">
+    <header class="topo-site">
         <nav>
-            <strong>Aviario Sonoro</strong>
-            <a href="catalogo.html">Catalogo</a>
+            <a class="marca" href="hub.html">Aviario Sonoro</a>
+            <div class="links-nav">
+                <a href="catalogo.html">Catalogo</a>
+                <a href="perfil.html">Perfil</a>
+                <a href="login.html">Login</a>
+            </div>
         </nav>
-
-        <div class="hero-conteudo">
-            <p class="etiqueta">Semens, do dia a dia</p>
-            <h1>Um cantinho quente e feio, igual eu.</h1>
-            <p id="frase-do-dia">Entre no catalogo e conheca as aves com mais aura do site.</p>
-            <a class="botao-link" href="catalogo.html">Ver passaros</a>
-        </div>
     </header>
 
-    <main>
-        <section class="card-inicio">
-            <h2>O que tem aqui?</h2>
-            <p>Pássaros estão de olho em nois, se esconda em seu ninho mais proximo, vc não esta seguro perto desses passaros sencientes, queremos comer você (la ele).</p>
+    <main class="layout-social">
+        <aside class="painel lateral">
+            <div class="mini-perfil">
+                <div class="avatar" id="avatarHub">AS</div>
+                <div>
+                    <strong id="nomeHub">Visitante do Aviario</strong>
+                    <span id="usuarioHub">@visitante</span>
+                </div>
+            </div>
+            <a class="botao-link" href="cadastro.html">Criar perfil</a>
+            <a class="link-secundario" href="perfil.html">Ver meu perfil</a>
+        </aside>
+
+        <section class="feed">
+            <div class="composer painel">
+                <p class="etiqueta">feed aviario</p>
+                <h1>O que esta cantando hoje?</h1>
+                <p id="frase-do-dia">Entre no catalogo e conheca as aves com mais aura do site.</p>
+                <div class="campo-post">Compartilhe um canto, uma foto ou uma fofoca de passaros...</div>
+            </div>
+
+            <article class="post">
+                <div class="topo-post">
+                    <div class="avatar">TT</div>
+                    <div>
+                        <strong>Tucano Toco</strong>
+                        <span>postou ha 8 min</span>
+                    </div>
+                </div>
+                <p>Bico grande, presenca maior ainda. Hoje o catalogo esta cheio de canto bom.</p>
+                <img src="foto de passaros/tucano_toco.jpg" alt="Tucano-toco">
+                <div class="acoes-post">
+                    <button type="button">Curtir</button>
+                    <button type="button">Comentar</button>
+                    <a class="botao-menor" href="catalogo.html">Ouvir canto</a>
+                </div>
+            </article>
+
+            <article class="post">
+                <div class="topo-post">
+                    <div class="avatar">CA</div>
+                    <div>
+                        <strong>Calopsita Perola</strong>
+                        <span>cantou ha 21 min</span>
+                    </div>
+                </div>
+                <p>Dia perfeito para conversar alto e fingir que ninguem esta ouvindo.</p>
+                <img src="foto de passaros/prikito.jpg" alt="Calopsita">
+                <div class="acoes-post">
+                    <button type="button">Curtir</button>
+                    <button type="button">Comentar</button>
+                    <a class="botao-menor" href="perfil.html">Ver perfil</a>
+                </div>
+            </article>
         </section>
+
+        <aside class="painel tendencias">
+            <h2>Em alta</h2>
+            <a href="catalogo.html">#CantoDoTucano</a>
+            <a href="catalogo.html">#BemTeViNews</a>
+            <a href="catalogo.html">#CalopsitaTalk</a>
+        </aside>
     </main>
 
     <div class="cursor"></div>

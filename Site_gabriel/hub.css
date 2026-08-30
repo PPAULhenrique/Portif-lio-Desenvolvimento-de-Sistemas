@@ -9,7 +9,7 @@ body {
     color: #18332f;
 }
 
-.topo-site {
+.barra-site {
     position: sticky;
     top: 0;
     z-index: 10;
@@ -168,12 +168,40 @@ h1 {
 }
 
 .campo-post {
+    display: grid;
+    gap: 10px;
     margin-top: 18px;
     padding: 14px;
     border: 1px solid rgba(255, 249, 237, 0.3);
     border-radius: 8px;
     background: rgba(255, 249, 237, 0.14);
     color: #fff9ed;
+}
+
+.campo-post textarea {
+    width: 100%;
+    min-height: 70px;
+    padding: 10px;
+    border: 1px solid rgba(255, 249, 237, 0.4);
+    border-radius: 6px;
+    background: rgba(255, 249, 237, 0.92);
+    color: #18332f;
+    font: inherit;
+    resize: vertical;
+}
+
+.mensagem {
+    min-height: 20px;
+    margin: 8px 0 0;
+    color: #7be0c4;
+    font-weight: bold;
+}
+
+.botao-curtir:disabled {
+    background: #cad7d0;
+    color: #60706a;
+    cursor: not-allowed;
+    transform: none;
 }
 
 .post {

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="hub.css">
 </head>
 <body>
-    <header class="topo-site">
+    <header class="barra-site">
         <nav>
             <a class="marca" href="hub.html">Aviario Sonoro</a>
             <div class="links-nav">
@@ -35,43 +35,15 @@
             <div class="composer painel">
                 <p class="etiqueta">feed aviario</p>
                 <h1>O que esta cantando hoje?</h1>
-                <p id="frase-do-dia">Entre no catalogo e conheca as aves com mais aura do site.</p>
-                <div class="campo-post">Compartilhe um canto, uma foto ou uma fofoca de passaros...</div>
+                <p id="frase-do-dia"></p>
+                <form id="formNovoPost" class="campo-post">
+                    <textarea id="textoPost" placeholder="Compartilhe um canto, uma foto ou uma fofoca de passaros..." required></textarea>
+                    <button type="submit">Publicar</button>
+                </form>
+                <p class="mensagem" id="mensagemPost"></p>
             </div>
 
-            <article class="post">
-                <div class="topo-post">
-                    <div class="avatar">TT</div>
-                    <div>
-                        <strong>Tucano Toco</strong>
-                        <span>postou ha 8 min</span>
-                    </div>
-                </div>
-                <p>Bico grande, presenca maior ainda. Hoje o catalogo esta cheio de canto bom.</p>
-                <img src="foto de passaros/tucano_toco.jpg" alt="Tucano-toco">
-                <div class="acoes-post">
-                    <button type="button">Curtir</button>
-                    <button type="button">Comentar</button>
-                    <a class="botao-menor" href="catalogo.html">Ouvir canto</a>
-                </div>
-            </article>
-
-            <article class="post">
-                <div class="topo-post">
-                    <div class="avatar">CA</div>
-                    <div>
-                        <strong>Calopsita Perola</strong>
-                        <span>cantou ha 21 min</span>
-                    </div>
-                </div>
-                <p>Dia perfeito para conversar alto e fingir que ninguem esta ouvindo.</p>
-                <img src="foto de passaros/prikito.jpg" alt="Calopsita">
-                <div class="acoes-post">
-                    <button type="button">Curtir</button>
-                    <button type="button">Comentar</button>
-                    <a class="botao-menor" href="perfil.html">Ver perfil</a>
-                </div>
-            </article>
+            <div id="listaFeed"></div>
         </section>
 
         <aside class="painel tendencias">
@@ -83,6 +55,8 @@
     </main>
 
     <div class="cursor"></div>
+    <script src="armazenamento.js"></script>
+    <script src="cursor.js"></script>
     <script src="hub.js"></script>
 </body>
 </html>

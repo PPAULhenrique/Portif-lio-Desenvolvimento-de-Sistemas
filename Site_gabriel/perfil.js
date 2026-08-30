@@ -1,40 +1,53 @@
-const usuarioSalvo = JSON.parse(localStorage.getItem("aviarioUsuario") || "null");
+// perfil.js
+// Mostra os dados reais do usuario logado e os posts que ele mesmo criou.
+// Requer armazenamento.js e cursor.js incluidos ANTES deste arquivo.
 
-function iniciais(nome) {
-    return nome
-        .split(" ")
-        .filter(Boolean)
-        .slice(0, 2)
-        .map((parte) => parte[0])
-        .join("")
-        .toUpperCase() || "AS";
+const usuarioAtual = usuarioLogado();
+
+if (!usuarioAtual) {
+    // Ninguem logado neste navegador: manda para o login em vez de
+    // mostrar um perfil fictício.
+    window.location.href = "login.html";
+} else {
+    document.getElementById("nomePerfil").textContent = usuarioAtual.nome;
+    document.getElementById("bioPerfil").textContent =
+        usuarioAtual.bio || "Esse usuario ainda nao escreveu uma bio.";
+    document.getElementById("usuarioPerfil").textContent = `@${usuarioAtual.usuario}`;
+    document.getElementById("avatarPerfil").textContent = iniciais(usuarioAtual.nome);
+
+    const meusPosts = postsDoUsuario(usuarioAtual.id);
+    const contagemPosts = document.getElementById("contagemPosts");
+    if (contagemPosts) contagemPosts.textContent = meusPosts.length;
+
+    const colunaPosts = document.getElementById("colunaPosts");
+    colunaPosts.innerHTML = "";
+
+    if (meusPosts.length === 0) {
+        colunaPosts.innerHTML =
+            "<p>Voce ainda nao publicou nada. Va ate o feed e cante alguma coisa!</p>";
+    } else {
+        meusPosts.forEach((post) => {
+            const artigo = document.createElement("article");
+            artigo.className = "post";
+            artigo.innerHTML = `
+                <div class="topo-post">
+                    <div class="avatar">${iniciais(usuarioAtual.nome)}</div>
+                    <div><strong>${escaparHTML(usuarioAtual.nome)}</strong></div>
+                </div>
+                <p>${escaparHTML(post.texto)}</p>
+                <div class="acoes-post">
+                    <span>${post.curtidas.length} curtida(s)</span>
+                </div>
+            `;
+            colunaPosts.appendChild(artigo);
+        });
+    }
 }
 
-if (usuarioSalvo) {
-    const nomePerfil = document.getElementById("nomePerfil");
-    const bioPerfil = document.getElementById("bioPerfil");
-    const usuarioPerfil = document.getElementById("usuarioPerfil");
-    const avatarPerfil = document.getElementById("avatarPerfil");
-    const autorPost = document.getElementById("autorPost");
-
-    nomePerfil.textContent = usuarioSalvo.nome;
-    bioPerfil.textContent = usuarioSalvo.bio || "Novo membro do Aviario Sonoro.";
-    usuarioPerfil.textContent = `@${usuarioSalvo.usuario}`;
-    avatarPerfil.textContent = iniciais(usuarioSalvo.nome);
-    autorPost.textContent = usuarioSalvo.nome;
+const botaoSair = document.getElementById("botaoSair");
+if (botaoSair) {
+    botaoSair.addEventListener("click", () => {
+        encerrarSessao();
+        window.location.href = "hub.html";
+    });
 }
-
-const cursor = document.querySelector(".cursor");
-
-document.addEventListener("mousemove", (evento) => {
-    cursor.style.left = `${evento.clientX}px`;
-    cursor.style.top = `${evento.clientY}px`;
-});
-
-document.addEventListener("mousedown", () => {
-    cursor.style.transform = "translate(-50%, -50%) scale(1.5)";
-});
-
-document.addEventListener("mouseup", () => {
-    cursor.style.transform = "translate(-50%, -50%) scale(1)";
-});

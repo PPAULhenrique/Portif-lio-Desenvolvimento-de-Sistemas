@@ -1,69 +1,64 @@
+// auth.js
+// Cadastro e login usando o armazenamento local (armazenamento.js).
+// Requer que armazenamento.js e cursor.js estejam incluidos ANTES deste
+// arquivo no HTML.
+
 const formCadastro = document.getElementById("formCadastro");
 const formLogin = document.getElementById("formLogin");
-const cursor = document.querySelector(".cursor");
-
-function salvarUsuario(dados) {
-    localStorage.setItem("aviarioUsuario", JSON.stringify(dados));
-}
-
-function buscarUsuario() {
-    return JSON.parse(localStorage.getItem("aviarioUsuario") || "null");
-}
 
 if (formCadastro) {
-    formCadastro.addEventListener("submit", (evento) => {
+    formCadastro.addEventListener("submit", async (evento) => {
         evento.preventDefault();
 
-        const usuario = {
+        const mensagem = document.getElementById("mensagemCadastro");
+        const botao = formCadastro.querySelector("button[type='submit']");
+
+        const dados = {
             nome: document.getElementById("cadastroNome").value.trim(),
-            usuario: document.getElementById("cadastroUsuario").value.trim().replace(/\s+/g, "_"),
+            usuario: document
+                .getElementById("cadastroUsuario")
+                .value.trim()
+                .replace(/\s+/g, "_"),
             bio: document.getElementById("cadastroBio").value.trim(),
-            senha: document.getElementById("cadastroSenha").value
+            senha: document.getElementById("cadastroSenha").value,
         };
 
-        salvarUsuario(usuario);
-        document.getElementById("mensagemCadastro").textContent = "Perfil criado! Abrindo sua pagina...";
+        botao.disabled = true;
+        mensagem.textContent = "Criando perfil...";
 
-        setTimeout(() => {
-            window.location.href = "perfil.html";
-        }, 700);
+        try {
+            const usuarioCriado = await cadastrarUsuario(dados);
+            iniciarSessao(usuarioCriado.id);
+            mensagem.textContent = "Perfil criado! Abrindo sua pagina...";
+            setTimeout(() => {
+                window.location.href = "perfil.html";
+            }, 600);
+        } catch (erro) {
+            mensagem.textContent = erro.message;
+            botao.disabled = false;
+        }
     });
 }
 
 if (formLogin) {
-    formLogin.addEventListener("submit", (evento) => {
+    formLogin.addEventListener("submit", async (evento) => {
         evento.preventDefault();
 
-        const usuario = buscarUsuario();
-        const loginUsuario = document.getElementById("loginUsuario").value.trim();
-        const loginSenha = document.getElementById("loginSenha").value;
         const mensagem = document.getElementById("mensagemLogin");
+        const usuario = document.getElementById("loginUsuario").value.trim();
+        const senha = document.getElementById("loginSenha").value;
 
-        if (!usuario) {
-            mensagem.textContent = "Crie um perfil antes de entrar.";
-            return;
-        }
+        mensagem.textContent = "Verificando...";
+        const usuarioEncontrado = await autenticarUsuario(usuario, senha);
 
-        if (loginUsuario === usuario.usuario && loginSenha === usuario.senha) {
+        if (usuarioEncontrado) {
+            iniciarSessao(usuarioEncontrado.id);
             mensagem.textContent = "Login aceito! Indo para o perfil...";
             setTimeout(() => {
                 window.location.href = "perfil.html";
-            }, 700);
+            }, 600);
         } else {
             mensagem.textContent = "Usuario ou senha nao combinam.";
         }
     });
 }
-
-document.addEventListener("mousemove", (evento) => {
-    cursor.style.left = `${evento.clientX}px`;
-    cursor.style.top = `${evento.clientY}px`;
-});
-
-document.addEventListener("mousedown", () => {
-    cursor.style.transform = "translate(-50%, -50%) scale(1.5)";
-});
-
-document.addEventListener("mouseup", () => {
-    cursor.style.transform = "translate(-50%, -50%) scale(1)";
-});

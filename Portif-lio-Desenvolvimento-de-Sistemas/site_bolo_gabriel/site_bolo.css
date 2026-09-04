@@ -1,0 +1,137 @@
+body {
+    background-color: rgba(255, 174, 0, 0.2);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    text-align: center;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #ffb347;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+    color: white;
+}
+
+/* Container */
+.container {
+    padding: 30px;
+}
+
+/* Imagem centralizada */
+img {
+    display: block;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+/* Ingredientes */
+.ingredientes {
+    background: rgb(255, 206, 101);
+    width: 350px;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.ingredientes ul {
+    list-style: none;
+    padding: 0;
+}
+
+.ingredientes li {
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Modo de preparo */
+.mododepreparo {
+    background: rgba(255, 174, 0, 0.4);
+    width: 350px;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.mododepreparo ul {
+    list-style: none;
+    padding: 0;
+}
+
+.mododepreparo li {
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+/* BOTÃO COM ANIMAÇÃO */
+.botao {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: #ffb347;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Hover */
+.botao:hover {
+    background-color: #ffb347;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    font-style: italic;
+}
+
+/* Clique */
+.botao:active {
+    transform: scale(0.95);
+    font-style: italic;
+}
+
+.main-footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+.footer-content a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: #ff9500;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Hover */
+a:hover {
+    background-color: #f79500;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    font-style: italic;
+}
+
+/* Clique */
+a:active {
+    transform: scale(0.95);
+    font-style: italic;
+}

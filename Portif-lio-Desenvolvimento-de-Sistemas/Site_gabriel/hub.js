@@ -54,10 +54,13 @@ function renderizarFeed() {
             <p>${escaparHTML(post.texto)}</p>
             ${post.imagemUrl ? `<img src="${post.imagemUrl}" alt="Foto da postagem">` : ""}
             <div class="acoes-post">
-                <button type="button" class="botao-curtir" data-id="${post.id}" ${
+                <button type="button" class="botao-curtir ${jaCurtiu ? "curtido" : ""}" data-id="${post.id}" ${
             usuarioAtual ? "" : "disabled title='Crie um perfil para curtir'"
         }>
-                    ${jaCurtiu ? "Descurtir" : "Curtir"} (${post.curtidas.length})
+                    <svg viewBox="0 0 24 24" class="icone-coracao" aria-hidden="true">
+                        <path d="M12 21s-6.7-4.35-9.33-8.2C.86 10.1 1.2 6.9 3.6 5.1c2.1-1.58 4.8-1.1 6.4.9.6.75 1.2 1.5 2 1.5s1.4-.75 2-1.5c1.6-2 4.3-2.48 6.4-.9 2.4 1.8 2.74 5 .93 7.7C18.7 16.65 12 21 12 21z"/>
+                    </svg>
+                    <span class="contagem-curtidas">${post.curtidas.length}</span>
                 </button>
             </div>
         `;

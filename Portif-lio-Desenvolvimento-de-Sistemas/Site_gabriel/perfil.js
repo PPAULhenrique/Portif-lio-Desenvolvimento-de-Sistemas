@@ -52,7 +52,12 @@ if (!usuarioAtual) {
                 <p>${escaparHTML(post.texto)}</p>
                 ${post.imagemUrl ? `<img src="${post.imagemUrl}" alt="Foto da postagem">` : ""}
                 <div class="acoes-post">
-                    <span>${post.curtidas.length} curtida(s)</span>
+                    <span class="botao-curtir ${post.curtidas.length > 0 ? "curtido" : ""}" style="cursor:default;">
+                        <svg viewBox="0 0 24 24" class="icone-coracao" aria-hidden="true">
+                            <path d="M12 21s-6.7-4.35-9.33-8.2C.86 10.1 1.2 6.9 3.6 5.1c2.1-1.58 4.8-1.1 6.4.9.6.75 1.2 1.5 2 1.5s1.4-.75 2-1.5c1.6-2 4.3-2.48 6.4-.9 2.4 1.8 2.74 5 .93 7.7C18.7 16.65 12 21 12 21z"/>
+                        </svg>
+                        <span class="contagem-curtidas">${post.curtidas.length}</span>
+                    </span>
                 </div>
             `;
             colunaPosts.appendChild(artigo);
@@ -106,7 +111,7 @@ if (!usuarioAtual) {
         listaFavoritos.innerHTML = "";
 
         ESPECIES_CATALOGO.forEach((especie) => {
-            const favoritado = (usuarioAtual.favoritos || []).includes(especie.id);
+            const favoritado = estaFavoritado(usuarioAtual.id, especie.id);
 
             const item = document.createElement("button");
             item.type = "button";
@@ -114,11 +119,8 @@ if (!usuarioAtual) {
             item.innerHTML = `${favoritado ? "★" : "☆"} <em>${escaparHTML(especie.nomeCientifico)}</em>`;
 
             item.addEventListener("click", () => {
-                const usuarioAtualizado = alternarFavorito(usuarioAtual.id, especie.id);
-                if (usuarioAtualizado) {
-                    usuarioAtual.favoritos = usuarioAtualizado.favoritos;
-                    renderizarFavoritos();
-                }
+                alternarFavorito(usuarioAtual.id, especie.id);
+                renderizarFavoritos();
             });
 
             listaFavoritos.appendChild(item);

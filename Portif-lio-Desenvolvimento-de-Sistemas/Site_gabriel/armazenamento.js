@@ -64,37 +64,6 @@ function validarArquivoDeImagem(arquivo, tamanhoMaximoEmMB = 8) {
     }
 }
 
-function redimensionarImagem(arquivo, larguraMaxima = 800, qualidade = 0.75) {
-    return new Promise((resolve, reject) => {
-        const leitor = new FileReader();
-
-        leitor.onerror = () => reject(new Error("Nao foi possivel ler o arquivo."));
-        leitor.onload = () => {
-            const imagem = new Image();
-
-            imagem.onerror = () => reject(new Error("Arquivo nao parece ser uma imagem valida."));
-            imagem.onload = () => {
-                const escala = Math.min(1, larguraMaxima / imagem.width);
-                const canvas = document.createElement("canvas");
-                canvas.width = Math.round(imagem.width * escala);
-                canvas.height = Math.round(imagem.height * escala);
-
-                const contexto = canvas.getContext("2d");
-                contexto.drawImage(imagem, 0, 0, canvas.width, canvas.height);
-
-                resolve(canvas.toDataURL("image/jpeg", qualidade));
-            };
-
-            imagem.src = leitor.result;
-        };
-
-        leitor.readAsDataURL(arquivo);
-    });
-}
-
-// Le um arquivo de imagem escolhido pelo usuario, redimensiona (para nao
-// estourar o limite do localStorage) e devolve como base64 (data URL),
-// que e o formato que da para guardar direto como texto no localStorage.
 function redimensionarImagem(arquivo, larguraMaxima = 800, qualidade = 0.8) {
     return new Promise((resolve, reject) => {
         if (!arquivo.type.startsWith("image/")) {
@@ -110,8 +79,8 @@ function redimensionarImagem(arquivo, larguraMaxima = 800, qualidade = 0.8) {
             imagem.onload = () => {
                 const escala = Math.min(1, larguraMaxima / imagem.width);
                 const canvas = document.createElement("canvas");
-                canvas.width = imagem.width * escala;
-                canvas.height = imagem.height * escala;
+                canvas.width = Math.round(imagem.width * escala);
+                canvas.height = Math.round(imagem.height * escala);
 
                 const contexto = canvas.getContext("2d");
                 contexto.drawImage(imagem, 0, 0, canvas.width, canvas.height);
@@ -131,7 +100,13 @@ function listarUsuarios() {
 }
 
 function salvarUsuarios(usuarios) {
-    localStorage.setItem(CHAVE_USUARIOS, JSON.stringify(usuarios));
+    try {
+        localStorage.setItem(CHAVE_USUARIOS, JSON.stringify(usuarios));
+        return true;
+    } catch (erro) {
+        console.error("Nao foi possivel salvar os usuarios (armazenamento local cheio?)", erro);
+        return false;
+    }
 }
 
 async function cadastrarUsuario({ nome, usuario, bio, senha }) {
@@ -195,17 +170,6 @@ function alternarFavorito(usuarioId, especieId) {
     return atualizarUsuario(usuarioId, { favoritos: novosFavoritos });
 }
 
-// Atualiza campos do usuario (ex: fotoPerfil, banner, bio) sem mexer no resto.
-function atualizarUsuario(usuarioId, camposParciais) {
-    const usuarios = listarUsuarios();
-    const indice = usuarios.findIndex((u) => u.id === usuarioId);
-    if (indice === -1) return null;
-
-    usuarios[indice] = { ...usuarios[indice], ...camposParciais };
-    salvarUsuarios(usuarios);
-    return usuarios[indice];
-}
-
 // ---------- Sessao (quem esta logado neste navegador agora) ----------
 
 function iniciarSessao(usuarioId) {
@@ -230,7 +194,13 @@ function listarPosts() {
 }
 
 function salvarPosts(posts) {
-    localStorage.setItem(CHAVE_POSTS, JSON.stringify(posts));
+    try {
+        localStorage.setItem(CHAVE_POSTS, JSON.stringify(posts));
+        return true;
+    } catch (erro) {
+        console.error("Nao foi possivel salvar os posts (armazenamento local cheio?)", erro);
+        return false;
+    }
 }
 
 function criarPost(autor, texto, imagemUrl = null) {
@@ -269,30 +239,14 @@ function postsDoUsuario(usuarioId) {
     return listarPosts().filter((p) => p.autorId === usuarioId);
 }
 
-// ---------- Passaros favoritos (associados ao perfil do usuario) ----------
-// Guardamos so o essencial de cada especie (nome cientifico + foto), que e
-// exatamente o que o catalogo ja mostra em cada card.
+// ---------- Passaros favoritos ----------
+// Guardamos apenas o "id" da especie (o mesmo id usado em ESPECIES_CATALOGO,
+// dentro de especies.js) no array usuario.favoritos. Isso evita duplicar os
+// dados da especie (nome cientifico, audio, foto) em dois lugares: tanto o
+// catalogo quanto o perfil sempre consultam ESPECIES_CATALOGO para exibir os
+// detalhes, usando so o id como referencia.
 
-function listarFavoritos(usuarioId) {
+function estaFavoritado(usuarioId, especieId) {
     const usuario = buscarUsuarioPorId(usuarioId);
-    return (usuario && usuario.favoritos) || [];
-}
-
-function estaNosFavoritos(usuarioId, nomeCientifico) {
-    return listarFavoritos(usuarioId).some((f) => f.nomeCientifico === nomeCientifico);
-}
-
-// Adiciona/remove uma especie dos favoritos do usuario. Retorna a lista atualizada.
-function alternarFavorito(usuarioId, especie) {
-    const favoritosAtuais = listarFavoritos(usuarioId);
-    const jaEstaFavoritado = favoritosAtuais.some(
-        (f) => f.nomeCientifico === especie.nomeCientifico
-    );
-
-    const novosFavoritos = jaEstaFavoritado
-        ? favoritosAtuais.filter((f) => f.nomeCientifico !== especie.nomeCientifico)
-        : [...favoritosAtuais, especie];
-
-    atualizarUsuario(usuarioId, { favoritos: novosFavoritos });
-    return novosFavoritos;
+    return Boolean(usuario && (usuario.favoritos || []).includes(especieId));
 }

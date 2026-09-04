@@ -38,6 +38,11 @@
                 <p id="frase-do-dia"></p>
                 <form id="formNovoPost" class="campo-post">
                     <textarea id="textoPost" placeholder="Compartilhe um canto, uma foto ou uma fofoca de passaros..." required></textarea>
+                    <label class="rotulo-arquivo">
+                        Adicionar foto (opcional)
+                        <input type="file" id="imagemPost" accept="image/*">
+                    </label>
+                    <img id="previaImagemPost" class="previa-imagem" hidden>
                     <button type="submit">Publicar</button>
                 </form>
                 <p class="mensagem" id="mensagemPost"></p>

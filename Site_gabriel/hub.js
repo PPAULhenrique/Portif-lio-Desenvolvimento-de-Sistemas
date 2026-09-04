@@ -13,6 +13,10 @@ const listaFeed = document.getElementById("listaFeed");
 const formNovoPost = document.getElementById("formNovoPost");
 const mensagemPost = document.getElementById("mensagemPost");
 const fraseDoDia = document.getElementById("frase-do-dia");
+const campoFotoPost = document.getElementById("imagemPost");
+const previaImagemPost = document.getElementById("previaImagemPost");
+
+let imagemPostSelecionada = null;
 
 if (fraseDoDia) {
     fraseDoDia.textContent = frases[new Date().getDay() % frases.length];
@@ -48,6 +52,7 @@ function renderizarFeed() {
                 </div>
             </div>
             <p>${escaparHTML(post.texto)}</p>
+            ${post.imagemUrl ? `<img src="${post.imagemUrl}" alt="Foto da postagem">` : ""}
             <div class="acoes-post">
                 <button type="button" class="botao-curtir" data-id="${post.id}" ${
             usuarioAtual ? "" : "disabled title='Crie um perfil para curtir'"
@@ -68,6 +73,27 @@ function renderizarFeed() {
     });
 }
 
+if (campoFotoPost) {
+    campoFotoPost.addEventListener("change", async () => {
+        const arquivo = campoFotoPost.files[0];
+        imagemPostSelecionada = null;
+        previaImagemPost.hidden = true;
+
+        if (!arquivo) return;
+
+        try {
+            validarArquivoDeImagem(arquivo);
+            imagemPostSelecionada = await redimensionarImagem(arquivo);
+            previaImagemPost.src = imagemPostSelecionada;
+            previaImagemPost.hidden = false;
+            mensagemPost.textContent = "";
+        } catch (erro) {
+            mensagemPost.textContent = erro.message;
+            campoFotoPost.value = "";
+        }
+    });
+}
+
 if (formNovoPost) {
     formNovoPost.addEventListener("submit", (evento) => {
         evento.preventDefault();
@@ -81,8 +107,12 @@ if (formNovoPost) {
         const texto = campoTexto.value.trim();
         if (!texto) return;
 
-        criarPost(usuarioAtual, texto);
+        criarPost(usuarioAtual, texto, imagemPostSelecionada);
+
         campoTexto.value = "";
+        if (campoFotoPost) campoFotoPost.value = "";
+        imagemPostSelecionada = null;
+        previaImagemPost.hidden = true;
         mensagemPost.textContent = "";
         renderizarFeed();
     });

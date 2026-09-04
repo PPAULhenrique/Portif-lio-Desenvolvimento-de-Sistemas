@@ -1,6 +1,7 @@
 // perfil.js
-// Mostra os dados reais do usuario logado e os posts que ele mesmo criou.
-// Requer armazenamento.js e cursor.js incluidos ANTES deste arquivo.
+// Mostra os dados reais do usuario logado, seus posts, e permite alterar
+// avatar, banner e passaros favoritos.
+// Requer armazenamento.js, especies.js e cursor.js incluidos ANTES deste arquivo.
 
 const usuarioAtual = usuarioLogado();
 
@@ -13,7 +14,21 @@ if (!usuarioAtual) {
     document.getElementById("bioPerfil").textContent =
         usuarioAtual.bio || "Esse usuario ainda nao escreveu uma bio.";
     document.getElementById("usuarioPerfil").textContent = `@${usuarioAtual.usuario}`;
-    document.getElementById("avatarPerfil").textContent = iniciais(usuarioAtual.nome);
+
+    const avatarEl = document.getElementById("avatarPerfil");
+    if (usuarioAtual.avatarUrl) {
+        avatarEl.style.backgroundImage = `url(${usuarioAtual.avatarUrl})`;
+        avatarEl.style.backgroundSize = "cover";
+        avatarEl.style.backgroundPosition = "center";
+        avatarEl.textContent = "";
+    } else {
+        avatarEl.textContent = iniciais(usuarioAtual.nome);
+    }
+
+    const capaPerfil = document.getElementById("capaPerfil");
+    if (usuarioAtual.bannerUrl && capaPerfil) {
+        capaPerfil.style.backgroundImage = `linear-gradient(135deg, rgba(13, 54, 58, 0.85), rgba(255, 122, 69, 0.35)), url(${usuarioAtual.bannerUrl})`;
+    }
 
     const meusPosts = postsDoUsuario(usuarioAtual.id);
     const contagemPosts = document.getElementById("contagemPosts");
@@ -35,6 +50,7 @@ if (!usuarioAtual) {
                     <div><strong>${escaparHTML(usuarioAtual.nome)}</strong></div>
                 </div>
                 <p>${escaparHTML(post.texto)}</p>
+                ${post.imagemUrl ? `<img src="${post.imagemUrl}" alt="Foto da postagem">` : ""}
                 <div class="acoes-post">
                     <span>${post.curtidas.length} curtida(s)</span>
                 </div>
@@ -42,6 +58,74 @@ if (!usuarioAtual) {
             colunaPosts.appendChild(artigo);
         });
     }
+
+    // ---------- Avatar e banner ----------
+    const campoAvatar = document.getElementById("campoAvatar");
+    const campoBanner = document.getElementById("campoBanner");
+    const mensagemImagens = document.getElementById("mensagemImagens");
+
+    if (campoAvatar) {
+        campoAvatar.addEventListener("change", async () => {
+            const arquivo = campoAvatar.files[0];
+            if (!arquivo) return;
+
+            try {
+                validarArquivoDeImagem(arquivo);
+                const dataUrl = await redimensionarImagem(arquivo, 300);
+                atualizarUsuario(usuarioAtual.id, { avatarUrl: dataUrl });
+                mensagemImagens.textContent = "Foto de perfil atualizada!";
+                setTimeout(() => window.location.reload(), 500);
+            } catch (erro) {
+                mensagemImagens.textContent = erro.message;
+            }
+        });
+    }
+
+    if (campoBanner) {
+        campoBanner.addEventListener("change", async () => {
+            const arquivo = campoBanner.files[0];
+            if (!arquivo) return;
+
+            try {
+                validarArquivoDeImagem(arquivo);
+                const dataUrl = await redimensionarImagem(arquivo, 1200);
+                atualizarUsuario(usuarioAtual.id, { bannerUrl: dataUrl });
+                mensagemImagens.textContent = "Banner atualizado!";
+                setTimeout(() => window.location.reload(), 500);
+            } catch (erro) {
+                mensagemImagens.textContent = erro.message;
+            }
+        });
+    }
+
+    // ---------- Passaros favoritos ----------
+    const listaFavoritos = document.getElementById("listaFavoritos");
+
+    function renderizarFavoritos() {
+        if (!listaFavoritos) return;
+        listaFavoritos.innerHTML = "";
+
+        ESPECIES_CATALOGO.forEach((especie) => {
+            const favoritado = (usuarioAtual.favoritos || []).includes(especie.id);
+
+            const item = document.createElement("button");
+            item.type = "button";
+            item.className = favoritado ? "tag-favorito ativo" : "tag-favorito";
+            item.innerHTML = `${favoritado ? "★" : "☆"} <em>${escaparHTML(especie.nomeCientifico)}</em>`;
+
+            item.addEventListener("click", () => {
+                const usuarioAtualizado = alternarFavorito(usuarioAtual.id, especie.id);
+                if (usuarioAtualizado) {
+                    usuarioAtual.favoritos = usuarioAtualizado.favoritos;
+                    renderizarFavoritos();
+                }
+            });
+
+            listaFavoritos.appendChild(item);
+        });
+    }
+
+    renderizarFavoritos();
 }
 
 const botaoSair = document.getElementById("botaoSair");

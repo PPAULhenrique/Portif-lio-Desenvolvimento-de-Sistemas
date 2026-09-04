@@ -19,7 +19,7 @@
     </header>
 
     <main class="pagina-perfil">
-        <section class="capa-perfil">
+        <section class="capa-perfil" id="capaPerfil">
             <div class="avatar-grande" id="avatarPerfil">AS</div>
             <div class="info-perfil">
                 <p class="etiqueta">perfil de usuario</p>
@@ -36,6 +36,20 @@
             <aside class="painel">
                 <h2>Sobre</h2>
                 <p><strong>Usuario:</strong> <span id="usuarioPerfil">@visitante</span></p>
+
+                <h2>Imagens do perfil</h2>
+                <label class="rotulo-arquivo">
+                    Foto de perfil
+                    <input type="file" id="campoAvatar" accept="image/*">
+                </label>
+                <label class="rotulo-arquivo">
+                    Banner do perfil
+                    <input type="file" id="campoBanner" accept="image/*">
+                </label>
+                <p class="mensagem" id="mensagemImagens"></p>
+
+                <h2>Passaros favoritos</h2>
+                <div id="listaFavoritos" class="grade-favoritos"></div>
             </aside>
 
             <div class="coluna-posts" id="colunaPosts"></div>
@@ -44,6 +58,7 @@
 
     <div class="cursor"></div>
     <script src="armazenamento.js"></script>
+    <script src="especies.js"></script>
     <script src="cursor.js"></script>
     <script src="perfil.js"></script>
 </body>

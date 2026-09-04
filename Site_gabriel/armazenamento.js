@@ -49,6 +49,81 @@ function iniciais(nome) {
     );
 }
 
+// ---------- Imagens (posts, avatar, banner) ----------
+// Como tudo fica no localStorage, imagens sao guardadas como Data URL
+// (texto base64) dentro do proprio JSON. Para nao estourar o limite de
+// espaco do localStorage (geralmente 5-10MB por site), toda imagem e
+// redimensionada e comprimida antes de ser salva.
+
+function validarArquivoDeImagem(arquivo, tamanhoMaximoEmMB = 8) {
+    if (!arquivo.type.startsWith("image/")) {
+        throw new Error("Escolha um arquivo de imagem (jpg, png, webp, etc).");
+    }
+    if (arquivo.size > tamanhoMaximoEmMB * 1024 * 1024) {
+        throw new Error(`A imagem deve ter no maximo ${tamanhoMaximoEmMB}MB.`);
+    }
+}
+
+function redimensionarImagem(arquivo, larguraMaxima = 800, qualidade = 0.75) {
+    return new Promise((resolve, reject) => {
+        const leitor = new FileReader();
+
+        leitor.onerror = () => reject(new Error("Nao foi possivel ler o arquivo."));
+        leitor.onload = () => {
+            const imagem = new Image();
+
+            imagem.onerror = () => reject(new Error("Arquivo nao parece ser uma imagem valida."));
+            imagem.onload = () => {
+                const escala = Math.min(1, larguraMaxima / imagem.width);
+                const canvas = document.createElement("canvas");
+                canvas.width = Math.round(imagem.width * escala);
+                canvas.height = Math.round(imagem.height * escala);
+
+                const contexto = canvas.getContext("2d");
+                contexto.drawImage(imagem, 0, 0, canvas.width, canvas.height);
+
+                resolve(canvas.toDataURL("image/jpeg", qualidade));
+            };
+
+            imagem.src = leitor.result;
+        };
+
+        leitor.readAsDataURL(arquivo);
+    });
+}
+
+// Le um arquivo de imagem escolhido pelo usuario, redimensiona (para nao
+// estourar o limite do localStorage) e devolve como base64 (data URL),
+// que e o formato que da para guardar direto como texto no localStorage.
+function redimensionarImagem(arquivo, larguraMaxima = 800, qualidade = 0.8) {
+    return new Promise((resolve, reject) => {
+        if (!arquivo.type.startsWith("image/")) {
+            reject(new Error("O arquivo escolhido nao e uma imagem."));
+            return;
+        }
+
+        const leitor = new FileReader();
+        leitor.onerror = () => reject(new Error("Nao foi possivel ler o arquivo."));
+        leitor.onload = () => {
+            const imagem = new Image();
+            imagem.onerror = () => reject(new Error("Nao foi possivel abrir a imagem."));
+            imagem.onload = () => {
+                const escala = Math.min(1, larguraMaxima / imagem.width);
+                const canvas = document.createElement("canvas");
+                canvas.width = imagem.width * escala;
+                canvas.height = imagem.height * escala;
+
+                const contexto = canvas.getContext("2d");
+                contexto.drawImage(imagem, 0, 0, canvas.width, canvas.height);
+
+                resolve(canvas.toDataURL("image/jpeg", qualidade));
+            };
+            imagem.src = leitor.result;
+        };
+        leitor.readAsDataURL(arquivo);
+    });
+}
+
 // ---------- Usuarios ----------
 
 function listarUsuarios() {
@@ -94,6 +169,43 @@ function buscarUsuarioPorId(id) {
     return listarUsuarios().find((u) => u.id === id) || null;
 }
 
+// Atualiza campos soltos do usuario (avatarUrl, bannerUrl, favoritos, etc.)
+// sem precisar reescrever o objeto inteiro na mao.
+function atualizarUsuario(usuarioId, camposNovos) {
+    const usuarios = listarUsuarios();
+    const indice = usuarios.findIndex((u) => u.id === usuarioId);
+    if (indice === -1) return null;
+
+    usuarios[indice] = { ...usuarios[indice], ...camposNovos };
+    salvarUsuarios(usuarios);
+    return usuarios[indice];
+}
+
+// Adiciona/remove uma especie (pelo id em ESPECIES_CATALOGO) da lista de
+// favoritos do usuario.
+function alternarFavorito(usuarioId, especieId) {
+    const usuario = buscarUsuarioPorId(usuarioId);
+    if (!usuario) return null;
+
+    const favoritosAtuais = usuario.favoritos || [];
+    const novosFavoritos = favoritosAtuais.includes(especieId)
+        ? favoritosAtuais.filter((id) => id !== especieId)
+        : [...favoritosAtuais, especieId];
+
+    return atualizarUsuario(usuarioId, { favoritos: novosFavoritos });
+}
+
+// Atualiza campos do usuario (ex: fotoPerfil, banner, bio) sem mexer no resto.
+function atualizarUsuario(usuarioId, camposParciais) {
+    const usuarios = listarUsuarios();
+    const indice = usuarios.findIndex((u) => u.id === usuarioId);
+    if (indice === -1) return null;
+
+    usuarios[indice] = { ...usuarios[indice], ...camposParciais };
+    salvarUsuarios(usuarios);
+    return usuarios[indice];
+}
+
 // ---------- Sessao (quem esta logado neste navegador agora) ----------
 
 function iniciarSessao(usuarioId) {
@@ -121,7 +233,7 @@ function salvarPosts(posts) {
     localStorage.setItem(CHAVE_POSTS, JSON.stringify(posts));
 }
 
-function criarPost(autor, texto) {
+function criarPost(autor, texto, imagemUrl = null) {
     const posts = listarPosts();
     const novoPost = {
         id: gerarId(),
@@ -129,6 +241,7 @@ function criarPost(autor, texto) {
         autorNome: autor.nome,
         autorUsuario: autor.usuario,
         texto,
+        imagemUrl: imagemUrl || null, // null = post sem imagem (compativel com posts antigos)
         criadoEm: new Date().toISOString(),
         curtidas: [], // guarda os IDs de quem curtiu, para nao deixar curtir 2x
     };
@@ -154,4 +267,32 @@ function alternarLike(postId, usuarioId) {
 
 function postsDoUsuario(usuarioId) {
     return listarPosts().filter((p) => p.autorId === usuarioId);
+}
+
+// ---------- Passaros favoritos (associados ao perfil do usuario) ----------
+// Guardamos so o essencial de cada especie (nome cientifico + foto), que e
+// exatamente o que o catalogo ja mostra em cada card.
+
+function listarFavoritos(usuarioId) {
+    const usuario = buscarUsuarioPorId(usuarioId);
+    return (usuario && usuario.favoritos) || [];
+}
+
+function estaNosFavoritos(usuarioId, nomeCientifico) {
+    return listarFavoritos(usuarioId).some((f) => f.nomeCientifico === nomeCientifico);
+}
+
+// Adiciona/remove uma especie dos favoritos do usuario. Retorna a lista atualizada.
+function alternarFavorito(usuarioId, especie) {
+    const favoritosAtuais = listarFavoritos(usuarioId);
+    const jaEstaFavoritado = favoritosAtuais.some(
+        (f) => f.nomeCientifico === especie.nomeCientifico
+    );
+
+    const novosFavoritos = jaEstaFavoritado
+        ? favoritosAtuais.filter((f) => f.nomeCientifico !== especie.nomeCientifico)
+        : [...favoritosAtuais, especie];
+
+    atualizarUsuario(usuarioId, { favoritos: novosFavoritos });
+    return novosFavoritos;
 }

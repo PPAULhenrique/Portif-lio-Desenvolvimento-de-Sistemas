@@ -161,6 +161,54 @@ button:hover {
     margin-top: 0;
 }
 
+.painel h2 {
+    margin-top: 22px;
+    font-size: 18px;
+}
+
+.painel h2:first-of-type {
+    margin-top: 0;
+}
+
+.rotulo-arquivo {
+    display: grid;
+    gap: 6px;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.mensagem {
+    min-height: 20px;
+    margin: 8px 0 0;
+    color: #0d6b63;
+    font-weight: bold;
+}
+
+.grade-favoritos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag-favorito {
+    padding: 8px 12px;
+    border: 1px solid #cfe2d6;
+    border-radius: 999px;
+    background: #eef5f0;
+    color: #18332f;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.tag-favorito.ativo {
+    background: #ffcf5c;
+    border-color: #ffcf5c;
+    color: #18332f;
+    font-weight: bold;
+}
+
 .coluna-posts {
     display: grid;
     gap: 18px;

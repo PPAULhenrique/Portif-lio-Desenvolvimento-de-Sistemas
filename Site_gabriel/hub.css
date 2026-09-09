@@ -252,22 +252,7 @@ h1 {
     border-bottom: 1px solid #cfe2d6;
 }
 
-* {
-    cursor: none !important;
-}
 
-.cursor {
-    width: 40px;
-    height: 40px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    background: url("Outras Fotos/Cursor_De_Passaro.png") no-repeat center;
-    transform: translate(-50%, -50%);
-    transition: transform 0.05s linear;
-    z-index: 20;
-}
 
 @media (max-width: 930px) {
     .layout-social {

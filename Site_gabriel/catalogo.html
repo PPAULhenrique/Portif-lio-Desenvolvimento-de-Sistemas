@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <title>Catalogo | Aviario Sonoro</title>
     <link rel="stylesheet" href="catalogo.css">
+    <link rel="stylesheet" href="ui.css">
 </head>
 <body>
     <header>
         <nav>
             <a class="marca" href="hub.html">Aviario Sonoro</a>
             <div class="links-nav">
-                <a href="hub.html">Feed</a>
-                <a href="perfil.html">Perfil</a>
-                <a href="login.html">Login</a>
+                <a href="hub.html"><i class="fa-solid fa-house" aria-hidden="true"></i>Feed</a>
+                <a href="perfil.html"><i class="fa-solid fa-address-card" aria-hidden="true"></i>Perfil</a>
+                <a href="login.html"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>Login</a>
             </div>
         </nav>
         <div class="topo">
@@ -32,7 +34,11 @@
         <div id="listaCatalogo" class="grade-catalogo"></div>
     </main>
 
-    <div class="cursor"></div>
+    <div class="cursor" aria-hidden="true">
+        <span class="cursor-ring"></span>
+        <span class="cursor-dot"></span>
+        <i class="fa-solid fa-feather cursor-icon"></i>
+    </div>
     <footer>
         <a href="hub.html">Voltar para o feed</a>
     </footer>

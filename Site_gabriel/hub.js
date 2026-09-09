@@ -26,7 +26,7 @@ if (fraseDoDia) {
 if (usuarioAtual) {
     document.getElementById("nomeHub").textContent = usuarioAtual.nome;
     document.getElementById("usuarioHub").textContent = `@${usuarioAtual.usuario}`;
-    document.getElementById("avatarHub").textContent = iniciais(usuarioAtual.nome);
+    document.getElementById("avatarHub").innerHTML = `<i class="fa-solid fa-fish" aria-hidden="true"></i>`;
 }
 
 function renderizarFeed() {
@@ -45,7 +45,7 @@ function renderizarFeed() {
         artigo.className = "post";
         artigo.innerHTML = `
             <div class="topo-post">
-                <div class="avatar">${iniciais(post.autorNome)}</div>
+                <div class="avatar"><i class="fa-solid fa-fish" aria-hidden="true"></i></div>
                 <div>
                     <strong>${escaparHTML(post.autorNome)}</strong>
                     <span>@${escaparHTML(post.autorUsuario)}</span>
@@ -57,7 +57,7 @@ function renderizarFeed() {
                 <button type="button" class="botao-curtir" data-id="${post.id}" ${
             usuarioAtual ? "" : "disabled title='Crie um perfil para curtir'"
         }>
-                    ${jaCurtiu ? "Descurtir" : "Curtir"} (${post.curtidas.length})
+                    ${jaCurtiu ? '<i class="fa-solid fa-heart" aria-hidden="true"></i>Descurtir' : '<i class="fa-regular fa-heart" aria-hidden="true"></i>Curtir'} (${post.curtidas.length})
                 </button>
             </div>
         `;

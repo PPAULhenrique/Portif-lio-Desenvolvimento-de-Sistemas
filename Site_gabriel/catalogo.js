@@ -84,7 +84,7 @@ function criarCard(especie, fotoUrl) {
 
     const botao = document.createElement("button");
     botao.type = "button";
-    botao.textContent = "▶️ Reproduzir";
+    botao.innerHTML = `<i class="fa-solid fa-play" aria-hidden="true"></i>Reproduzir`;
 
     botao.addEventListener("click", () => {
         if (audioTocandoAgora && audioTocandoAgora !== audio) {
@@ -93,19 +93,19 @@ function criarCard(especie, fotoUrl) {
 
         if (audio.paused) {
             audio.play();
-            botao.textContent = "⏸️ Pausar";
+            botao.innerHTML = `<i class="fa-solid fa-pause" aria-hidden="true"></i>Pausar`;
             audioTocandoAgora = audio;
             botaoTocandoAgora = botao;
         } else {
             audio.pause();
-            botao.textContent = "▶️ Reproduzir";
+            botao.innerHTML = `<i class="fa-solid fa-play" aria-hidden="true"></i>Reproduzir`;
             audioTocandoAgora = null;
             botaoTocandoAgora = null;
         }
     });
 
     audio.addEventListener("ended", () => {
-        botao.textContent = "▶️ Reproduzir";
+        botao.innerHTML = `<i class="fa-solid fa-play" aria-hidden="true"></i>Reproduzir`;
         audioTocandoAgora = null;
         botaoTocandoAgora = null;
     });

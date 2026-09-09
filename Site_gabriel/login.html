@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <title>Login | Aviario Sonoro</title>
     <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="ui.css">
 </head>
 <body>
     <main class="auth-pagina">
         <section class="chamada">
-            <a class="marca" href="hub.html">Aviario Sonoro</a>
+            <a class="marca" href="hub.html"><i class="fa-solid fa-feather" aria-hidden="true"></i>Aviario Sonoro</a>
             <p class="etiqueta">entre no ninho</p>
             <h1>Volte para o feed das aves mais barulhentas.</h1>
             <p>Entre com seu usuario para ver seu perfil e participar dessa rede social aviaria.</p>
@@ -26,7 +28,7 @@
                     Senha
                     <input id="loginSenha" type="password" placeholder="Sua senha" required>
                 </label>
-                <button type="submit">Entrar</button>
+                <button type="submit"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>Entrar</button>
                 <p class="mensagem" id="mensagemLogin"></p>
             </form>
             <p class="rodape-form">Ainda nao tem perfil? <a href="cadastro.html">Criar agora</a></p>
@@ -34,7 +36,11 @@
         </section>
     </main>
 
-    <div class="cursor"></div>
+    <div class="cursor" aria-hidden="true">
+        <span class="cursor-ring"></span>
+        <span class="cursor-dot"></span>
+        <i class="fa-solid fa-feather cursor-icon"></i>
+    </div>
     <script src="armazenamento.js"></script>
     <script src="cursor.js"></script>
     <script src="auth.js"></script>

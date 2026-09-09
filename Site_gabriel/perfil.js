@@ -22,7 +22,7 @@ if (!usuarioAtual) {
         avatarEl.style.backgroundPosition = "center";
         avatarEl.textContent = "";
     } else {
-        avatarEl.textContent = iniciais(usuarioAtual.nome);
+        avatarEl.innerHTML = `<i class="fa-solid fa-fish" aria-hidden="true"></i>`;
     }
 
     const capaPerfil = document.getElementById("capaPerfil");
@@ -46,7 +46,7 @@ if (!usuarioAtual) {
             artigo.className = "post";
             artigo.innerHTML = `
                 <div class="topo-post">
-                    <div class="avatar">${iniciais(usuarioAtual.nome)}</div>
+                    <div class="avatar"><i class="fa-solid fa-fish" aria-hidden="true"></i></div>
                     <div><strong>${escaparHTML(usuarioAtual.nome)}</strong></div>
                 </div>
                 <p>${escaparHTML(post.texto)}</p>

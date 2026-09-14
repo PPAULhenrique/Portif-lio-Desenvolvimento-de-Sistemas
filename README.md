@@ -32,3 +32,19 @@ Git/GitHub e desenvolvimento web.
 - Git
 - GitHub
 
+## 📚 O que estou aprendendo
+
+Durante o desenvolvimento deste projeto estou praticando:
+
+- HTML semântico
+- CSS e responsividade
+- JavaScript
+- Manipulação do DOM
+- APIs
+- armazenamento de dados
+- Git e GitHub
+- organização de projetos
+- UI/UX
+- acessibilidade
+
+

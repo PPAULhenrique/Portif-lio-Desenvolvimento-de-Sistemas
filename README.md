@@ -17,19 +17,12 @@ O projeto também serve como laboratório para colocar em
 prática conhecimentos de HTML, CSS, JavaScript, APIs,
 Git/GitHub e desenvolvimento web.
 
-## ✨ Funcionalidades
+## ✨ Coisas ja produzidas
 
-- 👤 Sistema de perfis
-- 📝 Publicações
-- ❤️ Curtidas
-- 🐦 Catálogo de pássaros
-- 🔊 Reprodução de sons
-- ⭐ Favoritos
-- 🎨 Personalização visual
-- 🖱️ Cursor personalizado
-- 📱 Interface responsiva
+- 🐦 Site com cátalogo de passáros
 
-## 🛠️ Tecnologias
+
+## 🛠️ Ferramentas
 
 - HTML5
 - CSS3
